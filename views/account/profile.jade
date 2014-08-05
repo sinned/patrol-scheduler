@@ -15,18 +15,13 @@ block content
       .col-sm-4
         input.form-control(type='text', name='name', id='name', value='#{user.profile.name}')
     .form-group
-      label.col-sm-2.control-label(for='gender') Gender
-      .col-sm-4
-        label.radio
-          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
-          span Male
-        label.radio
-          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
-          span Female
-    .form-group
-      label.col-sm-2.control-label(for='location') Location
+      label.col-sm-2.control-label(for='location') Home Address
       .col-sm-4
         input.form-control(type='text', name='location', id='location', value='#{user.profile.location}')
+    .form-group
+      label.col-sm-2.control-label(for='location') Tahoe Address
+      .col-sm-4
+        input.form-control(type='text', name='tahoe_address', id='tahoe_address', value='#{user.profile.tahoe_address}')          
     .form-group
       label.col-sm-2.control-label(for='website') Website
       .col-sm-4

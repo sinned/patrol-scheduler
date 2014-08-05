@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1 Homewood Volunteer Ski Patrol Schedule
+  p.lead Schedule
+
+  .row
+    table.table.table-striped
+      tr
+        th Date
+        th Name
+        th Action
+      each schedule in schedules
+        tr
+          td #{schedule.date}
+          td #{schedule.name}
+          td
+            button(type="button" class="btn-xs btn-danger") X
+
+
+  hr
+
+  if !user
+    p Please sign in to add a volunteer date.
+  else
+    h3 Add a Volunteer Date
+    .row 
+      form.form-horizontal(action='/schedule', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+          label.col-sm-2.control-label(for='date') Date
+          .col-sm-4
+            input.form-control(type='text', name='date', id='date', value='')
+        .form-group
+          label.col-sm-2.control-label(for='name') Patroller Name
+          .col-sm-4
+            select.form-control(name='name', id='name', value='')     
+              each user in users
+                if logged_in_user.email == user.email
+                  option.form-control('selected') #{user.profile.name}    
+                else
+                  option.form-control #{user.profile.name}   
+        .form-group
+          .col-sm-offset-2.col-sm-4
+            button.btn.btn.btn-primary(type='submit')
+              span.ion-edit
+              | Add Volunteer Date
+
+  p #{logged_in_user._id}   

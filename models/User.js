@@ -12,10 +12,12 @@ var userSchema = new mongoose.Schema({
 
   profile: {
     name: { type: String, default: '' },
-    gender: { type: String, default: '' },
+ //   gender: { type: String, default: '' },
     location: { type: String, default: '' },
     website: { type: String, default: '' },
-    picture: { type: String, default: '' }
+    picture: { type: String, default: '' },
+    tahoe_address: { type: String, default: '' },
+    user_level: {type: Number, default: 0 } // user levels.. greater than 999 is admin.
   },
 
   resetPasswordToken: String,

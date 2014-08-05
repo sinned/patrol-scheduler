@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Homewood Volunteer Ski Patrol Directory
+  p.lead Here we all are.
+  .row
+    table.table.table-striped
+      tr
+        th Name
+        th Email
+      each user in users
+        tr
+          td #{user.profile.name}
+          td #{user.email}
+
