@@ -4,12 +4,23 @@ block content
   h1 Homewood Volunteer Ski Patrol Directory
   p.lead Here we all are.
   .row
-    table.table.table-striped
-      tr
-        th Name
-        th Email
-      each user in users
+    form(method="POST", action="/api/user")
+      input(type='hidden', name='_csrf', value=_csrf)
+      table.table.table-striped
         tr
-          td #{user.profile.name}
-          td #{user.email}
+          th Name
+          th Email
+          th
+        each user in users
+          tr
+            td #{user.profile.name}
+            td #{user.email}
+            td
 
+        tr
+          td
+            input(name="name", placeholder="Name")
+          td
+            input(name="email", placeholder="Email")
+          td
+            button.adduser Add User

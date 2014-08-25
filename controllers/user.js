@@ -93,8 +93,13 @@ exports.postSignup = function(req, res, next) {
 
   var user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile: {
+      name: req.body.name
+    }
   });
+
+  //console.log('creating user ', user);
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
     if (existingUser) {
@@ -130,6 +135,9 @@ exports.getAccount = function(req, res) {
 exports.postUpdateProfile = function(req, res, next) {
   User.findById(req.user.id, function(err, user) {
     if (err) return next(err);
+
+    console.log("User found: ", user);
+
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
     user.profile.location = req.body.location || '';

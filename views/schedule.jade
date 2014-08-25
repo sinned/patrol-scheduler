@@ -10,12 +10,19 @@ block content
         th Date
         th Name
         th Action
+      -var currdate = ''
       each schedule in schedules
         tr
-          td #{schedule.date}
+          if currdate != schedule.date
+            td #{schedule.date.toString().substr(0,16)} #{currdate}
+            - currdate = schedule.date
+          else 
+            td BLAH
+
           td #{schedule.name}
           td
-            button(type="button" class="btn-xs btn-danger") X
+            a(href="/schedule/delete/" + schedule._id)
+              button(type="button" class="btn-xs btn-danger") X
 
 
   hr
@@ -30,7 +37,7 @@ block content
         .form-group
           label.col-sm-2.control-label(for='date') Date
           .col-sm-4
-            input.form-control(type='text', name='date', id='date', value='')
+            input.form-control.datepicker(type='text', name='date', id='date', value='')
         .form-group
           label.col-sm-2.control-label(for='name') Patroller Name
           .col-sm-4

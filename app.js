@@ -29,6 +29,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var userapiController = require('./controllers/api-user');
 
 // dennis added these controllers.
 var scheduleController = require('./controllers/schedule');
@@ -147,8 +148,13 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 
 app.get('/schedule', scheduleController.getSchedule);
 app.post('/schedule', scheduleController.postSchedule);
+app.get('/schedule/delete/:id', scheduleController.deleteSchedule);
+
 
 app.get('/directory', directoryController.getDirectory);
+
+app.get ('/api/user', userapiController.getUser);
+app.post ('/api/user', userapiController.postUser);
 
 /**
  * API examples routes.
