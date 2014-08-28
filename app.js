@@ -25,7 +25,7 @@ var connectAssets = require('connect-assets');
  * Controllers (route handlers).
  */
 
-var homeController = require('./controllers/home');
+var pagesController = require('./controllers/pages');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
@@ -124,7 +124,11 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: week }));
  * Main routes.
  */
 
-app.get('/', homeController.index);
+// Content Routes
+app.get('/', pagesController.index);
+app.get('/join', pagesController.join);
+
+// User Routes
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
